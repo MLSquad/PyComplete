@@ -2,6 +2,8 @@ body {
     width: 100%;
     height: 98vh;
     overflow: hidden;
+	color: white;
+	background-color: #e1f2f9;
 }
 
 .fill {
@@ -19,11 +21,14 @@ body {
     grid-column-start: 2;
     grid-column-end: 10;
 
-    border: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font: 30px bold Arial, sans-serif;
+    font-weight: bold;
+	font-size: 30px;
+    font-family: courier;
+	padding-top: 50px;
+	color: rgb(0,82,82);
 }
 
 #frame_editor {
@@ -32,6 +37,11 @@ body {
 
     grid-row-start: 3;
     grid-row-end: 7;
+}
+
+.edit-area-dynamic{
+	background-color: yellow !important;
+	overflow-y: hidden;
 }
 
 .suggestions {
@@ -44,6 +54,20 @@ body {
     border: 2px solid black;
     box-sizing: border-box;
     overflow-y: scroll;
+	background-color: rgb(0,82,82);
+    font-family: courier;
+	border-radius: 5px;
+	border: none;
+	margin-top: -60px;
+}
+
+::selection {
+  color: white;
+  background: black;
+}
+
+.suggestions p{
+	padding-left: 20px;
 }
 
 .run-model {
@@ -51,4 +75,45 @@ body {
 
     grid-row-start: 3;
     grid-row-end: 7;
+	background-color:rgb(0,82,82);
+	color: white;
+    font-family: courier;
+	font-size: 15px;
+	border: none;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	transition: all 0.2s;
+	outline: none;
+}
+
+.run-model:active {
+	background-color:rgb(0,62,62);
+	color: #e1f2f9;
+	font-weight: bold;
+	font-size: 17px;
+    vertical-align: top;
+    padding-top: 5px;
+}
+
+
+/*width*/
+::-webkit-scrollbar {
+  width:10px;
+}
+
+/*track*/
+::-webkit-scrollbar-track {
+  background:rgb(0,82,82);
+  border-style:solid;
+  border-color:rgb(0,82,82);
+  border-radius:4px;
+}
+
+/*thumb*/
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-width:3px;
+  border-style:solid;
+  border-color:black;
+  border-radius:3px;
 }
