@@ -1,37 +1,68 @@
-const tryInsertText = () => {
-    const s = 'body, html {}';
-    let editor = document.querySelector('#editor');
-    console.log(editor);
-    setTimeout(() => {
-        editAreaLoader.setValue("editor", s);
-    }, 3000);
-}
+const EXTERNAL_AREA_LOAD_MS = 200;
+
+const changeProcessor = {
+    waiting: 0,
+    received: 0,
+    timer: null,
+
+    processChange() {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            sendProcessingRequest(this, 1000);
+        });
+    }
+};
 
 const frameInit = () => {
     let frame = document.querySelector("#frame_editor");
-    frame.style.width = "100%";
+    frame.style.width  = "100%";
     frame.style.height = "100%";
 
     let frameDoc = frames['frame_editor'].document;
 
     frameDoc.querySelectorAll(".area_toolbar").forEach(elem => {
-        elem.style.display = "none";
+        elem.style.display = "none"; // get rid of some unnecessary design elements
+    });
+
+    let runModelButton = document.querySelector(".run-model");
+    runModelButton.addEventListener('input', () => {
+        changeProcessor.waiting++;
+        changeProcessor.processChange();
     });
 }
 
-const sendMockRequest = async () => {
+const fillSuggestions = (result) => {
+    const suggestionArea = document.querySelector(".suggestions");
+    suggestionArea.innerHTML = "";
+
+    let suggestions = [];
+    result.forEach(sug => {
+        const p = document.createElement('p');
+        p.innerHTML = JSON.stringify(sug);
+        suggestionArea.appendChild(p);
+    });
+}
+
+const sendProcessingRequest = async (processor) => {
+    processor.waiting++;
+    let content = editAreaLoader.getValue("editor");
+    let wrapped = {
+        text: JSON.stringify(content)
+    };
     let response = await fetch('http://localhost:3030/autocomplete', {
         method: 'POST',
         headers: {
+            'Content-Type': 'application/json'
         },
-        body: "{\"text\": \"def main()\"}"
+        body: JSON.stringify(wrapped)
     });
 
     let result = await response.json();
-    let suggestions = [];
-    console.log(JSON.stringify(result.result));
-    result.result.forEach(sug => suggestions.push(sug));
-    console.log(suggestions);
+    processor.received++;
+    
+    if (processor.waiting === processor.received) {
+        fillSuggestions(result.result);
+    }
 }
 
 const init = () => {
@@ -40,12 +71,10 @@ const init = () => {
         syntax: "python", 
         start_highlight: true, 
         toolbar: "|, select_font, |",
-        allow_toggle: false,
+        allow_toggle: false
     });
 
-    setTimeout(frameInit, 200);
-
-    sendMockRequest();
+    setTimeout(frameInit, EXTERNAL_AREA_LOAD_MS);
 }
 
 document.addEventListener('DOMContentLoaded', init);
