@@ -22,11 +22,15 @@ const frameInit = () => {
 
     let runModelButton = document.querySelector(".run-model");
     runModelButton.addEventListener('click', () => {
+		$(".loader").css("display", "block");
         changeProcessor.processChange();
     });
 }
 
 const fillSuggestions = (result) => {
+	$(".loader").css("display", "none");
+	$(".suggestions").empty();
+	
     const suggestionArea = document.querySelector(".suggestions");
     suggestionArea.innerHTML = "";
 
@@ -94,6 +98,13 @@ const fillDummyData = () => {
 	$(".suggestions")[0].appendChild(p5);
 	$(".suggestions")[0].appendChild(p6);
 	$(".suggestions")[0].appendChild(p7);
+	setTimeout(fillDummyDataLater, 5000);
+}
+
+const fillDummyDataLater = () => {
+    let p8 = document.createElement('p');
+	p8.innerHTML = 'IM A LITTLE LATE';
+	$(".suggestions")[0].appendChild(p8);
 }
 
 // inits editArea
