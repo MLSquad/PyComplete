@@ -3,13 +3,9 @@ const EXTERNAL_AREA_LOAD_MS = 200;
 const changeProcessor = {
     waiting: 0,
     received: 0,
-    timer: null,
 
     processChange() {
-        clearTimeout(this.timer);
-        this.timer = setTimeout(() => {
-            sendProcessingRequest(this, 1000);
-        });
+        sendProcessingRequest(this);
     }
 };
 
@@ -25,8 +21,7 @@ const frameInit = () => {
     });
 
     let runModelButton = document.querySelector(".run-model");
-    runModelButton.addEventListener('input', () => {
-        changeProcessor.waiting++;
+    runModelButton.addEventListener('click', () => {
         changeProcessor.processChange();
     });
 }
@@ -67,7 +62,7 @@ const sendProcessingRequest = async (processor) => {
 
 const init = () => {
     editAreaLoader.init({
-        id : "editor", 
+        id: "editor", 
         syntax: "python", 
         start_highlight: true, 
         toolbar: "|, select_font, |",
