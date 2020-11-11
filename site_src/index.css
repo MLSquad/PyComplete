@@ -3,7 +3,10 @@ body {
 	height: 98vh;
     overflow: hidden;
 	color: white;
-	background-color: #e1f2f9;
+	background-image: url("background.png");
+	background-repeat: no-repeat;
+	background-position: 120% 15%;
+	background-size: 35%;
 }
 
 .fill {
@@ -25,10 +28,11 @@ body {
     justify-content: center;
     align-items: center;
     font-weight: bold;
-	font-size: 30px;
+	font-size: 50px;
     font-family: courier;
 	padding-top: 50px;
-	color: rgb(0,82,82);
+	color: #FFD43B;
+	margin-top: 50px;
 }
 
 #frame_editor {
@@ -54,7 +58,7 @@ body {
     border: 2px solid black;
     box-sizing: border-box;
     overflow-y: scroll;
-	background-color: rgb(0,82,82);
+	background-color: #4B8BBE;
     font-family: courier;
 	border-radius: 5px;
 	border: none;
@@ -75,7 +79,7 @@ body {
 
     grid-row-start: 3;
     grid-row-end: 7;
-	background-color:rgb(0,82,82);
+	background-color:#FFD43B;
 	color: white;
     font-family: courier;
 	font-size: 15px;
@@ -87,7 +91,7 @@ body {
 }
 
 .run-model:active {
-	background-color:rgb(0,62,62);
+	background-color:#FFE873;
 	color: #e1f2f9;
 	font-weight: bold;
 	font-size: 17px;
@@ -103,17 +107,17 @@ body {
 
 /*track*/
 ::-webkit-scrollbar-track {
-  background:rgb(0,82,82);
+  background:#4B8BBE;
   border-style:solid;
-  border-color:rgb(0,82,82);
+  border-color:#4B8BBE;
   border-radius:4px;
 }
 
 /*thumb*/
 ::-webkit-scrollbar-thumb {
-  background: black;
+  background: #306998;
   border-width:3px;
   border-style:solid;
-  border-color:black;
+  border-color:#306998;
   border-radius:3px;
 }
