@@ -111,3 +111,23 @@ const fillDummyDataLater = () => {
 document.addEventListener('DOMContentLoaded', init);
 // fills in dummy data results
 document.addEventListener('DOMContentLoaded', fillDummyData);
+
+var current_mode = "light";
+function darkMode() {
+	if(current_mode == "light")
+	{
+		$("body").css("background-image", "none");
+		$("body").css("background-color", "#000");
+		$("body").css("filter", "invert(90%)");
+		$("#darkmode").html("What is this ugly thing?<br>Bring me back to the light, NOW!");
+		current_mode = "dark";
+	}
+	else if(current_mode == "dark")
+	{
+		$("body").css("background-image", "url('background.png')");
+		$("body").css("background-color", "#fff");
+		$("body").css("filter", "none");
+		$("#darkmode").html("Your eyes are burning?<br>Click me and submit to the dark side!");
+		current_mode = "light";
+	}
+}

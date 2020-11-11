@@ -7,6 +7,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: 120% 15%;
 	background-size: 35%;
+	transition: all 1s;
 }
 
 .fill {
@@ -33,6 +34,22 @@ body {
 	padding-top: 50px;
 	color: #FFD43B;
 	margin-top: 50px;
+}
+
+#darkmode {
+	background-color: #FFD43B;
+	color: #306998;
+	border: none;
+	transition: all 0.5s;
+	border-radius: 5px;
+	outline: none;
+	font-weight: bold;
+}
+
+#darkmode:hover {
+	background-color: black;
+	color: red;
+	border: none;
 }
 
 #frame_editor {
