@@ -97,7 +97,6 @@ body {
     grid-row-start: 3;
     grid-row-end: 7;
 	background-color:#FFD43B;
-	color: white;
     font-family: courier;
 	font-size: 15px;
 	border: none;
@@ -105,6 +104,10 @@ body {
 	border-bottom-left-radius: 10px;
 	transition: all 0.2s;
 	outline: none;
+
+    font-size: 25px;
+    font-weight: bold;
+    color: #4B8BBE;
 }
 
 .run-model:active {

@@ -76,41 +76,8 @@ const init = () => {
     setTimeout(frameInit, EXTERNAL_AREA_LOAD_MS);
 }
 
-const fillDummyData = () => {
-    let p1 = document.createElement('p');
-    let p2 = document.createElement('p');
-    let p3 = document.createElement('p');
-    let p4 = document.createElement('p');
-    let p5 = document.createElement('p');
-    let p6 = document.createElement('p');
-    let p7 = document.createElement('p');
-	p1.innerHTML = 'suggestion1';
-	p2.innerHTML = 'suggestion2';
-	p3.innerHTML = 'suggestion3';
-	p4.innerHTML = 'suggestion4';
-	p5.innerHTML = 'suggestion5';
-	p6.innerHTML = 'suggestion6';
-	p7.innerHTML = 'suggestion7';
-	$(".suggestions")[0].appendChild(p1);
-	$(".suggestions")[0].appendChild(p2);
-	$(".suggestions")[0].appendChild(p3);
-	$(".suggestions")[0].appendChild(p4);
-	$(".suggestions")[0].appendChild(p5);
-	$(".suggestions")[0].appendChild(p6);
-	$(".suggestions")[0].appendChild(p7);
-	setTimeout(fillDummyDataLater, 5000);
-}
-
-const fillDummyDataLater = () => {
-    let p8 = document.createElement('p');
-	p8.innerHTML = 'IM A LITTLE LATE';
-	$(".suggestions")[0].appendChild(p8);
-}
-
 // inits editArea
 document.addEventListener('DOMContentLoaded', init);
-// fills in dummy data results
-document.addEventListener('DOMContentLoaded', fillDummyData);
 
 var current_mode = "light";
 function darkMode() {
